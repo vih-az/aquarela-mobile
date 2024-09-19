@@ -58,7 +58,7 @@ Text(text = "Cadastre-se", fontSize = 32.sp)
                 verticalArrangement = Arrangement.SpaceEvenly){
                 OutlinedTextField(value = "", onValueChange = {}, colors = OutlinedTextFieldDefaults.colors(unfocusedContainerColor = Color(0xffB8CED4), unfocusedBorderColor = Color.Transparent), label = {
                     Text(text = "Nome completo")})
-                OutlinedTextField(value = "", onValueChange = {}, colors = OutlinedTextFieldDefaults.colors(unfocusedContainerColor = Color(0xffB8CED4), unfocusedBorderColor = Color.Transparent))
+                OutlinedTextField(value = "", onValueChange = {}, colors = OutlinedTextFieldDefaults.colors(unfocusedContainerColor = Color(0xffB8CED4), unfocusedBorderColor = Color.Transparent), label = {Text(text = "Apelido")})
                 OutlinedTextField(value = "", onValueChange = {}, colors = OutlinedTextFieldDefaults.colors(unfocusedContainerColor = Color(0xffB8CED4), unfocusedBorderColor = Color.Transparent))
                 OutlinedTextField(value = "", onValueChange = {}, colors = OutlinedTextFieldDefaults.colors(unfocusedContainerColor = Color(0xffB8CED4), unfocusedBorderColor = Color.Transparent))
                 OutlinedTextField(value = "", onValueChange = {}, colors = OutlinedTextFieldDefaults.colors(unfocusedContainerColor = Color(0xffB8CED4), unfocusedBorderColor = Color.Transparent))
