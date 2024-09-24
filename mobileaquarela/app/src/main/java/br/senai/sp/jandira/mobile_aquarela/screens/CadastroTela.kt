@@ -1,8 +1,7 @@
 package br.senai.sp.jandira.mobile_aquarela.screens
 
-import androidx.compose.foundation.BorderStroke
+import android.util.Log
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -42,6 +41,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.senai.sp.jandira.mobile_aquarela.model.Cadastro
+import br.senai.sp.jandira.mobile_aquarela.model.Result
+import br.senai.sp.jandira.mobile_aquarela.service.RetrofitFactory
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 @Composable
 fun CadastroTela(){
@@ -99,7 +104,31 @@ Text(text = "Cadastre-se", fontSize = 32.sp, color = Color(0xff3E7D8D), fontWeig
                 OutlinedTextField(value = telefoneUsuarioState, onValueChange = {telefoneUsuarioState = it}, colors = OutlinedTextFieldDefaults.colors(unfocusedContainerColor = Color(0xffB8CED4), unfocusedBorderColor = Color.Transparent, focusedContainerColor = Color(0xffB8CED4)), label = {Text(text = "Telefone")}, leadingIcon = {
                     Icon(imageVector = Icons.Default.Phone, contentDescription = " ")})
             }
-            Button(onClick = {}, modifier = Modifier
+            Button(onClick = {
+                val callUsuarios = RetrofitFactory().pegarCadastroService().inserirUsuarios(
+                    cadastros = Cadastro(
+                        nome = nomeCompletoState,
+                        nome_usuario = apelidoState,
+                        foto_usuario = null,
+                        descricao = null,
+                        email = emailState,
+                        senha = senhaState,
+                        cpf = cpfState,
+                        data_nascimento = dataDeNascimentoUsuarioState,
+                        telefone = telefoneUsuarioState,
+                        disponibilidade = null,
+                        user_stats = true
+                    )
+                )
+                callUsuarios.enqueue(object : Callback<Result>{
+                    override fun onResponse(p0: Call<Result>, p1: Response<Result>) {
+                        Log.i("foi", p1.body().toString())
+                    }
+
+                    override fun onFailure(p0: Call<Result>, p1: Throwable) {
+                        Log.i("falhou", p1.toString())
+                    }
+                })},modifier = Modifier
                 .width(270.dp)
                 .height(50.dp)
                 .background(
