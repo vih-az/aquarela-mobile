@@ -1,6 +1,7 @@
 package br.senai.sp.jandira.mobile_aquarela.screens
 
 import android.util.Log
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -37,10 +38,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.senai.sp.jandira.mobile_aquarela.R
 import br.senai.sp.jandira.mobile_aquarela.model.Cadastro
 import br.senai.sp.jandira.mobile_aquarela.model.Result
 import br.senai.sp.jandira.mobile_aquarela.service.RetrofitFactory
@@ -53,7 +58,7 @@ fun CadastroTela(){
     Surface(modifier = Modifier.fillMaxSize(), color = Color(0xffE2E8EB)){
         Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.SpaceEvenly){
             var nomeCompletoState by remember{
-                mutableStateOf(" ")}
+                mutableStateOf("")}
             var apelidoState by remember {
                 mutableStateOf("")
             }
@@ -63,13 +68,13 @@ fun CadastroTela(){
             var senhaState by remember {
                 mutableStateOf("")}
             var cpfState by remember {
-                mutableStateOf(" ")
+                mutableStateOf("")
             }
             var dataDeNascimentoUsuarioState by remember {
-                mutableStateOf(" ")
+                mutableStateOf("")
             }
             var telefoneUsuarioState by remember {
-                mutableStateOf(" ")
+                mutableStateOf("")
             }
             Row(modifier = Modifier
                 .fillMaxWidth()
@@ -91,14 +96,19 @@ Text(text = "Cadastre-se", fontSize = 32.sp, color = Color(0xff3E7D8D), fontWeig
                 .fillMaxWidth()
                 .height(500.dp), horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceEvenly){
-                OutlinedTextField(value = nomeCompletoState, onValueChange = {nomeCompletoState = it}, colors = OutlinedTextFieldDefaults.colors(unfocusedContainerColor = Color(0xffB8CED4), unfocusedBorderColor = Color.Transparent, focusedContainerColor = Color(0xffB8CED4)), label = {
-                    Text(text = "Nome completo")}, leadingIcon = { Icon(imageVector = Icons.Default.PermIdentity, contentDescription = " ") })
-                OutlinedTextField(value = apelidoState, onValueChange = {apelidoState = it}, colors = OutlinedTextFieldDefaults.colors(unfocusedContainerColor = Color(0xffB8CED4), unfocusedBorderColor = Color.Transparent, focusedContainerColor = Color(0xffB8CED4)), label = {Text(text = "Apelido")})
+                OutlinedTextField(value = nomeCompletoState, onValueChange = {nomeCompletoState = it}, colors = OutlinedTextFieldDefaults.colors(unfocusedContainerColor = Color(0xffB8CED4), unfocusedBorderColor = Color.Transparent, focusedContainerColor = Color(0xffB8CED4)), leadingIcon = { Icon(imageVector = Icons.Default.PermIdentity, contentDescription = " ") }, placeholder = { Text(modifier = Modifier.padding(start = 10.dp), fontFamily = FontFamily.Default, fontSize = 14.sp, fontStyle = FontStyle.Normal, fontWeight = FontWeight.Light, text = "Nome completo")})
+                OutlinedTextField(value = apelidoState, onValueChange = {apelidoState = it}, colors = OutlinedTextFieldDefaults.colors(unfocusedContainerColor = Color(0xffB8CED4), unfocusedBorderColor = Color.Transparent, focusedContainerColor = Color(0xffB8CED4)), label = {Text(text = "Apelido")}, leadingIcon = {
+                    Image(painter = painterResource(id = R.drawable.icon), contentDescription = " ", modifier = Modifier
+                        .height(50.dp)
+                        .width(30.dp))})
                 OutlinedTextField(value = emailState, onValueChange = {emailState = it}, colors = OutlinedTextFieldDefaults.colors(unfocusedContainerColor = Color(0xffB8CED4), unfocusedBorderColor = Color.Transparent, focusedContainerColor = Color(0xffB8CED4)), label = {Text(text = "Email")}, leadingIcon = {
                     Icon(imageVector = Icons.Default.Email, contentDescription = " ")})
                 OutlinedTextField(value = senhaState, onValueChange = {senhaState = it}, colors = OutlinedTextFieldDefaults.colors(unfocusedContainerColor = Color(0xffB8CED4), unfocusedBorderColor = Color.Transparent, focusedContainerColor = Color(0xffB8CED4)), label = {Text(text = "Senha")}, leadingIcon = {
                     Icon(imageVector = Icons.Default.Lock, contentDescription = " ")})
-                OutlinedTextField(value = cpfState, onValueChange = {cpfState = it}, colors = OutlinedTextFieldDefaults.colors(unfocusedContainerColor = Color(0xffB8CED4), unfocusedBorderColor = Color.Transparent, focusedContainerColor = Color(0xffB8CED4)), label = {Text(text = "Cpf")})
+                OutlinedTextField(value = cpfState, onValueChange = {cpfState = it}, colors = OutlinedTextFieldDefaults.colors(unfocusedContainerColor = Color(0xffB8CED4), unfocusedBorderColor = Color.Transparent, focusedContainerColor = Color(0xffB8CED4)), label = {Text(text = "Cpf")}, leadingIcon = {
+                    Image(painter = painterResource(id = R.drawable.icon1), contentDescription = " ", modifier = Modifier
+                        .height(50.dp)
+                        .width(30.dp))})
                 OutlinedTextField(value = dataDeNascimentoUsuarioState, onValueChange = {dataDeNascimentoUsuarioState = it}, colors = OutlinedTextFieldDefaults.colors(unfocusedContainerColor = Color(0xffB8CED4), unfocusedBorderColor = Color.Transparent, focusedContainerColor = Color(0xffB8CED4)), label = {Text(text = "Data de nascimento")}, leadingIcon = {
                     Icon(imageVector = Icons.Default.Cake, contentDescription = "")})
                 OutlinedTextField(value = telefoneUsuarioState, onValueChange = {telefoneUsuarioState = it}, colors = OutlinedTextFieldDefaults.colors(unfocusedContainerColor = Color(0xffB8CED4), unfocusedBorderColor = Color.Transparent, focusedContainerColor = Color(0xffB8CED4)), label = {Text(text = "Telefone")}, leadingIcon = {
@@ -129,16 +139,16 @@ Text(text = "Cadastre-se", fontSize = 32.sp, color = Color(0xff3E7D8D), fontWeig
                         Log.i("falhou", p1.toString())
                     }
                 })},modifier = Modifier
-                .width(270.dp)
-                .height(50.dp)
-                .background(
-                    brush = Brush.horizontalGradient(
-                        colors = listOf(
-                            Color(0xff5DA5B7),
-                            Color(0xff3E7D8D)
+                    .width(270.dp)
+                    .height(50.dp)
+                    .background(
+                        brush = Brush.horizontalGradient(
+                            colors = listOf(
+                                Color(0xff5DA5B7),
+                                Color(0xff3E7D8D)
+                            )
                         )
-                    )
-                ),
+                    ),
                 shape = RoundedCornerShape(4.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.Transparent
